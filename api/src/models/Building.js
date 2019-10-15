@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-const Apartment = require('./Apartment')
 
 const { Schema } = mongoose
 
@@ -24,6 +23,13 @@ const buildingSchema = Schema({
 
 buildingSchema.virtual("apartments", {
     ref: "Apartment",
+    localField: "_id",
+    foreignField: "building",
+    justOne: false,
+})
+
+buildingSchema.virtual("tickets", {
+    ref: "Ticket",
     localField: "_id",
     foreignField: "building",
     justOne: false,

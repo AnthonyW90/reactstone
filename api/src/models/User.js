@@ -14,6 +14,12 @@ const userSchema = Schema({
         type: String,
         required: true,
     },
+    firstName: {
+        type: String,
+    },
+    lastName: {
+        type: String,
+    },
     role: {
         isAdmin: {
             type: Boolean,
@@ -42,10 +48,24 @@ const userSchema = Schema({
     }
 })
 
-userSchema.virtual("profile", {
-    ref: "Profile",
+userSchema.virtual("lease", {
+    ref: "Lease",
     localField: "_id",
-    foreignField: "user",
+    foreignField: "tenant",
+    justOne: true,
+})
+
+userSchema.virtual("apartment", {
+    ref: "Apartment",
+    localField: "_id",
+    foreignField: "tenant",
+    justOne: true,
+})
+
+userSchema.virtual("application", {
+    ref: "Application",
+    localField: "_id",
+    foreignField: "applicant",
     justOne: true,
 })
 

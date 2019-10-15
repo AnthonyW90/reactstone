@@ -4,7 +4,6 @@ const cors = require("cors")
 const morgan = require("morgan")
 
 const userRouter = require('./routes/user.routes')
-const profileRouter = require('./routes/profile.routes')
 const buildingRouter = require('./routes/building.routes')
 
 
@@ -17,7 +16,6 @@ app.use(cors())
 
 app.use('/building', buildingRouter)
 app.use('/user', userRouter)
-app.use('/profile', profileRouter)
 
 /* istanbul ignore next */
 const connectDatabase = async (dbName = 'reactstone', hostname = 'localhost') => {

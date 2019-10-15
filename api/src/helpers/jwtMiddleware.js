@@ -8,7 +8,7 @@ const jwtMiddleware = async (req, res, next) => {
   try {
       if(type === 'Bearer' && jwt.verify(token, "CHANGEME!")) {
           const payload = jwt.decode(token, "CHANGEME!")
-          const user = await User.findById(payload._id).populate("profile")
+          const user = await User.findById(payload._id)
           req.user = user
           next()
       } else {

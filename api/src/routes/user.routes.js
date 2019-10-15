@@ -5,6 +5,10 @@ const jwtMiddleware = require('../helpers/jwtMiddleware')
 const requireRole = require('../helpers/permissions')
 const handleValidationErrors = require('../helpers/handleValidationErrors')
 
+const Apartment = require('../models/Apartment')
+const Lease = require('../models/Lease')
+const Application = require('../models/Application')
+
 const User = require('../models/User')
 
 const router = AsyncRouter()
@@ -27,8 +31,10 @@ const loginValidator = [
 
 // GET list of users
 router.get('/', async (req, res) => {
- const users = await User.find().populate("profile")
- res.send(users) 
+ const users = await User.find().populate({
+   path: "lease apartment application"
+ })
+ res.send(users.map((user) => user.sanitize()))
 })
 
 // CREATE a new user
@@ -63,8 +69,8 @@ router.post('/login', [...loginValidator, handleValidationErrors], async (req, r
   const user = await User.findOne({username: req.body.username})
 
   
-//   if(!user || !user.comparePassword(req.body.password))
-//     return res.status(400).send("Invalid login information")
+  if(!user || !user.comparePassword(req.body.password))
+    return res.status(400).send("Invalid login information")
 
   const token = jwt.sign({_id: user._id}, "CHANGEME!")
 

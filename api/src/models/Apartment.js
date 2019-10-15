@@ -11,6 +11,10 @@ const apartmentSchema = Schema({
     building: {
         type: ObjectId,
         ref: "Building"
+    },
+    tenant: {
+        type: ObjectId,
+        ref: "User"
     }
 }, {
     timestamps: true,
@@ -20,6 +24,13 @@ const apartmentSchema = Schema({
     toObject: {
         virtuals: true,
     }
+})
+
+apartmentSchema.virtual("tickets", {
+    ref: "Ticket",
+    localField: "_id",
+    foreignField: "apartment",
+    justOne: false,
 })
 
 const Apartment = mongoose.model("Apartment", apartmentSchema)
