@@ -14,6 +14,24 @@ const userSchema = Schema({
         type: String,
         required: true,
     },
+    role: {
+        isAdmin: {
+            type: Boolean,
+            default: false,
+        },
+        isManager: {
+            type: Boolean,
+            default: false,
+        },
+        isMaintenance: {
+            type: Boolean,
+            default: false,
+        },
+        isResident: {
+            type: Boolean,
+            default: false,
+        },
+    }
 }, {
     timestamps: true,
     toJSON: {
@@ -31,10 +49,11 @@ userSchema.virtual("profile", {
     justOne: true,
 })
 
-userSchema.statics.signUp = async function(email, password) {
+userSchema.statics.signUp = async function(username, password, role) {
     const user = new this()
-    user.email = email
+    user.username = username
     user.hashPassword(password)
+    user.role = role
 
     await user.save()
 

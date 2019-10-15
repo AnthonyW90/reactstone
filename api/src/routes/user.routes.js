@@ -9,6 +9,11 @@ const User = require('../models/User')
 
 const router = AsyncRouter()
 
+const ADMIN = 'isAdmin'
+const MANAGER = 'isManager'
+const MAINT = 'isMaintenance'
+const RESIDENT = 'isResident'
+
 const createUserValidators = [
     check("username").exists(),
     check("password").exists(),
@@ -35,9 +40,22 @@ router.post('/create',[...createUserValidators, handleValidationErrors], async (
   if(req.body.password !== req.body.passwordConfirm)
     return res.status(400).send("Passwords do not match.")
 
-  const user = await User.signUp(req.body.email, req.body.password)
+  const user = await User.signUp(req.body.username, req.body.password, req.body.role)
 
   res.status(201).send(user.sanitize())
+})
+
+// PATCH update a user
+router.patch('/:_id', [jwtMiddleware, requireRole(ADMIN)], async (req, res) => {
+  const user = await User.findById(req.params._id)
+
+  if (!user)
+    return res.status(401).send("User not found")
+  
+  user.set(req.body)
+  await user.save()
+
+  res.status(201).send(user)
 })
 
 // LOGIN a user
@@ -53,8 +71,9 @@ router.post('/login', [...loginValidator, handleValidationErrors], async (req, r
   res.send({token})
 })
 
-router.get('/admin', [jwtMiddleware, requireRole("isManager")], async (req, res) => {
-  res.send("It worked!!!!!!!!!!")
+
+router.get(`/${ADMIN}`, [jwtMiddleware, requireRole(ADMIN)], async (req, res) => {
+  const user = await User.find({})
 })
 
 
