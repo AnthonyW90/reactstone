@@ -1,0 +1,26 @@
+{
+  "name": "reactstone",
+  "version": "0.0.1",
+  "description": "Apartment replica full-stack application",
+  "main": "index.js",
+  "scripts": {
+    "concurrent": "concurrently -p [{name}] -c bgBlue.bold,bgGreen.bold -n API,UI",
+    "start": "yarn concurrent 'cd api && yarn start' 'cd ui && yarn start'",
+    "install": "yarn concurrent 'cd api && yarn' 'cd ui && yarn'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnthonyW90/reactstone.git"
+  },
+  "author": "Anthony Wallace",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnthonyW90/reactstone/issues"
+  },
+  "homepage": "https://github.com/AnthonyW90/reactstone#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^5.0.0"
+  }
+}

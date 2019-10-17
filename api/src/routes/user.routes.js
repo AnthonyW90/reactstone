@@ -13,11 +13,6 @@ const User = require('../models/User')
 
 const router = AsyncRouter()
 
-const ADMIN = 'isAdmin'
-const MANAGER = 'isManager'
-const MAINT = 'isMaintenance'
-const RESIDENT = 'isResident'
-
 const createUserValidators = [
     check("username").exists(),
     check("password").exists(),
@@ -30,7 +25,7 @@ const loginValidator = [
 ]
 
 // GET list of users
-router.get('/', async (req, res) => {
+router.get('/', [jwtMiddleware, requireRole(["isManager"])], async (req, res) => {
  const users = await User.find().populate({
    path: "lease apartment application"
  })
@@ -52,7 +47,7 @@ router.post('/create',[...createUserValidators, handleValidationErrors], async (
 })
 
 // PATCH update a user
-router.patch('/:_id', [jwtMiddleware, requireRole(ADMIN)], async (req, res) => {
+router.patch('/:_id', [jwtMiddleware, requireRole('isAdmin')], async (req, res) => {
   const user = await User.findById(req.params._id)
 
   if (!user)
@@ -74,12 +69,11 @@ router.post('/login', [...loginValidator, handleValidationErrors], async (req, r
 
   const token = jwt.sign({_id: user._id}, "CHANGEME!")
 
-  res.send({token})
-})
-
-
-router.get(`/${ADMIN}`, [jwtMiddleware, requireRole(ADMIN)], async (req, res) => {
-  const user = await User.find({})
+  res.send({
+    ...user._doc,
+    password: undefined,
+    token
+  })
 })
 
 
