@@ -21,22 +21,8 @@ const userSchema = Schema({
         type: String,
     },
     role: {
-        isAdmin: {
-            type: Boolean,
-            default: false,
-        },
-        isManager: {
-            type: Boolean,
-            default: false,
-        },
-        isMaintenance: {
-            type: Boolean,
-            default: false,
-        },
-        isResident: {
-            type: Boolean,
-            default: false,
-        },
+        enum: ["admin", "manager", "maintenance", "resident"],
+        type: String,
     }
 }, {
     timestamps: true,

@@ -1,9 +1,10 @@
 import React, {useState, useGlobal} from 'reactn'
+import { Redirect } from 'react-router-dom'
 import styled from 'styled-components'
 import client from '../api/client'
 
 const Div = styled.div`
-    height: 100vh;
+    height: calc(100vh - 64px);
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -11,7 +12,7 @@ const Div = styled.div`
 `
 
 const Form = styled.form`
-    height: 80vh;
+    height: 80%;
     width: 80%;
     min-width: 400px;
     max-width: 800px;
@@ -72,17 +73,18 @@ const LoginPage = () => {
         <Div>
             <Form onSubmit={handleSubmit}>
                 <h2>Login</h2>
-                {loggedIn ? <div>Hello {username}</div> : ''}
                 <Input type="text" name="username" placeholder="Username" value={formState.username} onChange={handleChange}></Input>
                 <Input type="password" name="password" placeholder="Password" value={formState.password} onChange={handleChange}></Input>
-                <select name="" id="" onChange={handleLogin}>
+                <select onChange={handleLogin}>
                     <option value="">---</option>
                     <option value="admin,password">Admin</option>
                     <option value="manager,password">Manager</option>
                     <option value="maintenance,password">Maintenance</option>
                     <option value="resident,password">Resident</option>
+                    <option value="user,password">User</option>
                 </select>
                 <button>Login</button>
+                {loggedIn ? <Redirect to="/"></Redirect> : ''}
             </Form>
         </Div>
     )

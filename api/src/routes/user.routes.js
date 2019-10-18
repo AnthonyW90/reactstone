@@ -25,7 +25,7 @@ const loginValidator = [
 ]
 
 // GET list of users
-router.get('/', [jwtMiddleware, requireRole(["isManager"])], async (req, res) => {
+router.get('/', [jwtMiddleware, requireRole("admin")], async (req, res) => {
  const users = await User.find().populate({
    path: "lease apartment application"
  })
@@ -57,6 +57,13 @@ router.patch('/:_id', [jwtMiddleware, requireRole('isAdmin')], async (req, res) 
   await user.save()
 
   res.status(201).send(user)
+})
+
+// DELETE a user
+router.delete('/', async (req, res) => {
+  const user = await User.findOne({username: req.body.username})
+  await user.remove()
+  res.send(user)
 })
 
 // LOGIN a user

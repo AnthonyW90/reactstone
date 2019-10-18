@@ -10,12 +10,7 @@ const initialState ={
     token: null,
     loggedIn: false,
     username: null,
-    role: {
-        isAdmin: false,
-        isManager: false,
-        isMaintenance: false,
-        isResident: false,
-    }
+    role: null,
 }
 
 const rehydrateState = () => {

@@ -11,4 +11,4 @@
 
 // module.exports = requireRole
 
-module.exports = requireRole = role => (req, res, next) => req.user.role[role] || req.user.role.isAdmin ? next() : res.sendStatus(403)
+module.exports = requireRole = role => (req, res, next) => req.user.role === role || req.user.role === "admin" ? next() : res.sendStatus(403)
