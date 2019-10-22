@@ -8,7 +8,9 @@ const jwtMiddleware = async (req, res, next) => {
   try {
       if(type === 'Bearer' && jwt.verify(token, "CHANGEME!")) {
           const payload = jwt.decode(token, "CHANGEME!")
-          const user = await User.findById(payload._id)
+          const user = await User.findById(payload._id).populate({
+              path: "lease apartment application"
+          })
           req.user = user
           next()
       } else {

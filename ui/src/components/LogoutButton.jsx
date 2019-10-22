@@ -6,12 +6,18 @@ const Button = styled.button`
     bottom: 10px;
     right: 10px;
     border: none;
-    border-radius: 100%;
+    border-radius: 12px;
     background-color: red;
     color: white;
-    height: 60px;
+    height: 40px;
     width: 60px;
     font-weight: bold;
+
+    transition: all .5s;
+
+    &:hover{
+        background-color: tomato;
+    }
 `
 
 const LogoutButton = () => {

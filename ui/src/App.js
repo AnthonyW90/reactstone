@@ -3,7 +3,6 @@ import React, {useGlobal} from 'reactn';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import LandingPage from './pages/LandingPage'
-import LoginPage from './pages/LoginPage'
 import AdminPage from './pages/AdminPage';
 import ManagerPage from './pages/ManagerPage';
 import MaintenancePage from './pages/MaintenancePage';

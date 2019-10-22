@@ -5,58 +5,61 @@ const { ObjectId } = Schema.Types
 const leaseSchema = Schema({
     leaseStartDate: {
         type: Date,
-        required: true
     },
     leaseEndDate: {
         type: Date,
-        required: true
     },
     apartment: {
         type: ObjectId,
-        ref: "apartment",
-        required: true
+        ref: "apartment"
     },
     streetAddress: {
         type: String,
-        required: true
     },
     city: {
         type: String,
-        required: true
     },
     state: {
         type: String,
-        required: true
     },
     zipCode: {
         type: String,
-        required: true
     },
     landlord: {
-        type: String,
-        required: true    
+        type: String,  
     },
     landlordContact: {
         type: String,
-        required: true
     },
     tenant: {
         type: ObjectId,
         ref: "User",
-        required: true
     },
     rent: {
         type: Number,
-        required: true,
     },
     deposit: {
         type: Number,
-        required: true,
     },
     lateFee: {
         type: Number,
     }
 })
+
+leaseSchema.statics.newLease = async function(data){
+    const lease = new this()
+
+    lease.set(data)
+
+    // for(thing of Object.keys(data)) {
+    //     lease[thing] = data[thing]
+    // }
+
+    await lease.save()
+
+    return lease
+}
+
 
 const Lease = mongoose.model("Lease", leaseSchema)
 module.exports = Lease

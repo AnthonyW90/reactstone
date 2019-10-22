@@ -25,7 +25,7 @@ router.get("/", async (req, res) => {
 
 // ADD a building
 router.post("/", 
-[...createBuildingValidator, jwtMiddleware, requireRole("isAdmin"), handleValidationErrors], 
+[...createBuildingValidator, jwtMiddleware, requireRole("admin"), handleValidationErrors], 
 async (req, res) => {
   const building = new Building(req.body)
 

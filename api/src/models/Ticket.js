@@ -12,7 +12,9 @@ const ticketSchema = Schema({
         type: String,
         required: true,
     },
-    // priority: [1, 2, 3, 4, 5],
+    priority: {
+        enum: ["1", "2", "3", "4", "5"]
+    },
     apartment: {
         type: ObjectId,
         ref: "Apartment",
@@ -42,6 +44,18 @@ const ticketSchema = Schema({
         ref: "User"
     }
 })
+
+ticketSchema.statics.newTicket = async function(data){
+    const ticket = new this()
+
+    ticket.set(data)
+    tickets = await Ticket.find()
+    ticket.ticketNumber = tickets.length + 1
+
+    await ticket.save()
+
+    return ticket
+}
 
 const Ticket = mongoose.model("Ticket", ticketSchema)
 module.exports = Ticket

@@ -5,6 +5,9 @@ const morgan = require("morgan")
 
 const userRouter = require('./routes/user.routes')
 const buildingRouter = require('./routes/building.routes')
+const apartmentRouter = require('./routes/apartment.routes')
+const leaseRouter = require('./routes/lease.routes')
+const ticketRouter = require('./routes/ticket.routes')
 
 
 const app = express()
@@ -16,6 +19,9 @@ app.use(cors())
 
 app.use('/building', buildingRouter)
 app.use('/user', userRouter)
+app.use('/apartment', apartmentRouter)
+app.use('/lease', leaseRouter)
+app.use('/ticket', ticketRouter)
 
 /* istanbul ignore next */
 const connectDatabase = async (dbName = 'reactstone', hostname = 'localhost') => {

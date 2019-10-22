@@ -5,7 +5,6 @@ const jwtMiddleware = require('../helpers/jwtMiddleware')
 const requireRole = require('../helpers/permissions')
 const handleValidationErrors = require('../helpers/handleValidationErrors')
 
-const Apartment = require('../models/Apartment')
 const Lease = require('../models/Lease')
 const Application = require('../models/Application')
 
@@ -25,7 +24,7 @@ const loginValidator = [
 ]
 
 // GET list of users
-router.get('/', [jwtMiddleware, requireRole("admin")], async (req, res) => {
+router.get('/', [jwtMiddleware, requireRole("manager")], async (req, res) => {
  const users = await User.find().populate({
    path: "lease apartment application"
  })
@@ -47,7 +46,7 @@ router.post('/create',[...createUserValidators, handleValidationErrors], async (
 })
 
 // PATCH update a user
-router.patch('/:_id', [jwtMiddleware, requireRole('isAdmin')], async (req, res) => {
+router.patch('/:_id', [jwtMiddleware, requireRole("manager")], async (req, res) => {
   const user = await User.findById(req.params._id)
 
   if (!user)

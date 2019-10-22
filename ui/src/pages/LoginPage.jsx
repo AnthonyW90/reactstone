@@ -1,7 +1,7 @@
-import React, {useState, useGlobal} from 'reactn'
-import { Redirect } from 'react-router-dom'
-import styled from 'styled-components'
-import client from '../api/client'
+import React, { useState, useGlobal } from 'reactn';
+import { Redirect } from 'react-router-dom';
+import styled from 'styled-components';
+import client from '../api/client';
 
 const Div = styled.div`
     height: calc(100vh - 64px);
@@ -9,7 +9,7 @@ const Div = styled.div`
     display: flex;
     justify-content: center;
     align-content: center;
-`
+`;
 
 const Form = styled.form`
     height: 80%;
@@ -22,7 +22,7 @@ const Form = styled.form`
     align-items: center;
 
     padding: 2rem;
-`
+`;
 
 const Input = styled.input`
     width: 50%;
@@ -31,63 +31,75 @@ const Input = styled.input`
     border: none;
     border-bottom: 1px solid ${props => props.theme.colors.primary};
 
-    &:active{
+    &:active {
         outline: none;
     }
-`
-
+`;
 
 const LoginPage = () => {
     const [formState, setFormState] = useState({
-        username: "",
-        password: "",
-    })
+        username: '',
+        password: '',
+    });
 
-    const [loggedIn, setLoggedIn] = useGlobal("loggedIn")
-    const { 1: setToken } = useGlobal("token")
-    const [username, setUsername] = useGlobal("username")
-    const { 1: setRole } = useGlobal("role")
+    const [loggedIn, setLoggedIn] = useGlobal('loggedIn');
+    const { 1: setToken } = useGlobal('token');
+    const { 1: setUsername } = useGlobal('username');
+    const { 1: setRole } = useGlobal('role');
 
     const handleChange = e => {
         setFormState({
             ...formState,
-            [e.target.name]: e.target.value
-        })
-    }
+            [e.target.name]: e.target.value,
+        });
+    };
 
     const handleSubmit = async e => {
-        e.preventDefault()
-        const { data } = await client.post('/user/login', formState)
+        e.preventDefault();
+        const { data } = await client.post('/user/login', formState);
 
-        setLoggedIn(true)
-        setToken(data.token)
-        setUsername(data.username)
-        setRole(data.role)
-    }
+        setLoggedIn(true);
+        setToken(data.token);
+        setUsername(data.username);
+        setRole(data.role);
+    };
 
     const handleLogin = e => {
-        setFormState({username: e.target.value.split(',')[0], password: e.target.value.split(',')[1]})
-    }
+        setFormState({
+            username: e.target.value.split(',')[0],
+            password: e.target.value.split(',')[1],
+        });
+    };
 
     return (
         <Div>
             <Form onSubmit={handleSubmit}>
                 <h2>Login</h2>
-                <Input type="text" name="username" placeholder="Username" value={formState.username} onChange={handleChange}></Input>
-                <Input type="password" name="password" placeholder="Password" value={formState.password} onChange={handleChange}></Input>
+                <Input
+                    type='text'
+                    name='username'
+                    placeholder='Username'
+                    value={formState.username}
+                    onChange={handleChange}></Input>
+                <Input
+                    type='password'
+                    name='password'
+                    placeholder='Password'
+                    value={formState.password}
+                    onChange={handleChange}></Input>
                 <select onChange={handleLogin}>
-                    <option value="">---</option>
-                    <option value="admin,password">Admin</option>
-                    <option value="manager,password">Manager</option>
-                    <option value="maintenance,password">Maintenance</option>
-                    <option value="resident,password">Resident</option>
-                    <option value="user,password">User</option>
+                    <option value=''>---</option>
+                    <option value='admin,password'>Admin</option>
+                    <option value='manager,password'>Manager</option>
+                    <option value='maintenance,password'>Maintenance</option>
+                    <option value='resident,password'>Resident</option>
+                    <option value='user,password'>User</option>
                 </select>
                 <button>Login</button>
-                {loggedIn ? <Redirect to="/"></Redirect> : ''}
+                {loggedIn ? <Redirect to='/'></Redirect> : ''}
             </Form>
         </Div>
-    )
-}
+    );
+};
 
-export default LoginPage
+export default LoginPage;
