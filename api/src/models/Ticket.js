@@ -13,7 +13,7 @@ const ticketSchema = Schema({
         required: true,
     },
     priority: {
-        enum: ["1", "2", "3", "4", "5"]
+        enum: ["1", "2", "3", "4", "5"],
     },
     apartment: {
         type: ObjectId,
@@ -42,6 +42,14 @@ const ticketSchema = Schema({
     servicedBy: {
         type: ObjectId,
         ref: "User"
+    },
+    touched: {
+        type: Boolean,
+        defuault: false,
+    },
+    deleted: {
+        type: Boolean,
+        default: false
     }
 })
 

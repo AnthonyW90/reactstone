@@ -11,7 +11,7 @@ const leaseSchema = Schema({
     },
     apartment: {
         type: ObjectId,
-        ref: "apartment"
+        ref: "Apartment"
     },
     streetAddress: {
         type: String,

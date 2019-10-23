@@ -8,6 +8,7 @@ const buildingRouter = require('./routes/building.routes')
 const apartmentRouter = require('./routes/apartment.routes')
 const leaseRouter = require('./routes/lease.routes')
 const ticketRouter = require('./routes/ticket.routes')
+const applicationRouter = require('./routes/application.routes')
 
 
 const app = express()
@@ -22,6 +23,7 @@ app.use('/user', userRouter)
 app.use('/apartment', apartmentRouter)
 app.use('/lease', leaseRouter)
 app.use('/ticket', ticketRouter)
+app.use('/application', applicationRouter)
 
 /* istanbul ignore next */
 const connectDatabase = async (dbName = 'reactstone', hostname = 'localhost') => {

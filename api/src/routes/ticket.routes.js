@@ -44,6 +44,43 @@ router.post('/', [jwtMiddleware], async (req, res) => {
 });
 
 // RETRIEVE
-router.get('/:_id', [jwtMiddleware]);
+router.get('/:_id', [jwtMiddleware], async (req, res) => {
+    const ticket = await Ticket.findById(req.params._id);
+
+    if (!ticket) return res.status(404).send('Ticket not found');
+    if (req.user.role === 'resident') {
+        ticket.apartment.equals(req.user.apartment)
+            ? res.send(ticket)
+            : res.sendStatus(403);
+    }
+
+    res.send(ticket);
+});
+
+// UPDATE
+router.patch('/:_id', [jwtMiddleware], async (req, res) => {
+    const ticket = await Ticket.findById(req.params._id);
+
+    if (!ticket) return res.status(404).send('Ticket not found');
+    if (req.user.role === 'resident') {
+        if (!ticket.touched && ticket.apartment.equals(req.user.apartment)) {
+            ticket.set(req.body);
+            await ticket.save();
+            res.send(ticket);
+        } else {
+            res.sendStatus(403);
+        }
+    }
+    ticket.set(req.body);
+    await ticket.save();
+    res.send(ticket);
+});
+
+router.delete('/:_id', [jwtMiddleware, requireRole("admin"), async (req, res) => {
+  const ticket = await Ticket.findById(req.params._id)
+  if(!ticket) return res.status(404).send("Ticket not found")
+  await ticket.remove()
+  res.send(ticket)
+}])
 
 module.exports = router;
