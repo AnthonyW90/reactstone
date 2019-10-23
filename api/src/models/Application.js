@@ -49,6 +49,10 @@ const applicationSchema = Schema({
     evicted: {
         type: Boolean,
     },
+    status: {
+        enum: ["open", "approved", "closed"],
+        type: String
+    }
 });
 
 const Application = mongoose.model('Application', applicationSchema);

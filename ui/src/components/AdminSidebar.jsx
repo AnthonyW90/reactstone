@@ -1,7 +1,10 @@
 import React from 'reactn';
 import styled from 'styled-components';
 
+
 const Container = styled.div`
+    margin: 0;
+    overflow: hidden;
     height: 100%;
     min-height: 100vh;
     width: 100%;
@@ -24,14 +27,18 @@ const Navigation = styled.div`
     flex-direction: column;
     justify-content: flex-start;
 `;
+
 const Link = styled.a`
     height: 36px;
     width: 100%;
-    background-color: ${props => props.theme.colors.secondary};
+    background-color: ${props => props.theme.colors.primary};
+    border-bottom: 1px solid white;
+    font-size: ${props => props.fontSize || '32px'};
+    font-weight: ${props => props.fontWeight || '400'};
     
 
-    &:nth-child(even){
-        background-color: ${props => props.theme.colors.primary};
+    &:last-child(){
+        border-bottom: none;
     }
 `;
 
@@ -40,9 +47,9 @@ const Sidebar = () => {
         <Container>
             <Title>Lakeshore Heights</Title>
             <Navigation>
-                <Link></Link>
-                <Link></Link>
-                <Link></Link>
+                <Link fontWeight="bold">Residents</Link>
+                <Link fontWeight="bold">Tickets</Link>
+                <Link>New Ticket</Link>
             </Navigation>
         </Container>
     );
