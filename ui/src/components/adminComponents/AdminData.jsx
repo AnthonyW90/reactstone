@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useGlobal } from 'reactn';
-import client from '../api/client';
+import client from '../../api/client';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -210,7 +210,7 @@ const AdminData = () => {
                               )}`
                         : 'loading...'}
                 </CardInfo>
-                <CardTitle>Estimated Maintenance Cost</CardTitle>
+                <CardTitle>Est. Maintenance Cost</CardTitle>
             </Card>
         </Container>
     );

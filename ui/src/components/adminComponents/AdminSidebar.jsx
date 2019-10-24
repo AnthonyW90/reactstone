@@ -1,4 +1,5 @@
 import React from 'reactn';
+import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 
 
@@ -28,9 +29,12 @@ const Navigation = styled.div`
     justify-content: flex-start;
 `;
 
-const Link = styled.a`
+const NavLink = styled(Link)`
     height: 36px;
     width: 100%;
+    padding: 1rem;
+    color: ${props => props.theme.colors.highlight};
+    text-decoration: none;
     background-color: ${props => props.theme.colors.primary};
     border-bottom: 1px solid white;
     font-size: ${props => props.fontSize || '32px'};
@@ -47,9 +51,12 @@ const Sidebar = () => {
         <Container>
             <Title>Lakeshore Heights</Title>
             <Navigation>
-                <Link fontWeight="bold">Residents</Link>
-                <Link fontWeight="bold">Tickets</Link>
-                <Link>New Ticket</Link>
+                <NavLink to="/users">Users</NavLink>
+                <NavLink to="/buildings">Buildings</NavLink>
+                <NavLink to="/apartments">Units</NavLink>
+                <NavLink to="/applications">Applications</NavLink>
+                <NavLink to="/leases">Lease</NavLink>
+                <NavLink to="/tickets">Tickets</NavLink>
             </Navigation>
         </Container>
     );

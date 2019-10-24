@@ -1,8 +1,10 @@
 import React from 'reactn'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import LogoutButton from '../components/LogoutButton'
-import Sidebar from '../components/AdminSidebar'
-import AdminData from '../components/AdminData'
+import Sidebar from '../components/adminComponents/AdminSidebar'
+import AdminData from '../components/adminComponents/AdminData'
+import AdminUsers from '../components/adminComponents/AdminUsers'
 
 const AdminContainer = styled.div`
     display: grid;
@@ -17,7 +19,27 @@ const AdminPage = () => {
         <>
             <AdminContainer>
                 <Sidebar />
-                <AdminData />
+                <Route exact path="/">
+                    <AdminData />
+                </Route>
+                <Route path="/users">
+                    <AdminUsers />
+                </Route>
+                <Route path="/buildings">
+                    <AdminUsers />
+                </Route>
+                <Route path="/apartments">
+                    <AdminUsers />
+                </Route>
+                <Route path="/applications">
+                    <AdminUsers />
+                </Route>
+                <Route path="/leases">
+                    <AdminUsers />
+                </Route>
+                <Route path="/tickets">
+                    <AdminUsers />
+                </Route>
             </AdminContainer>
             <LogoutButton/>
         </>

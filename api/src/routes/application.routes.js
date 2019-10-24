@@ -16,7 +16,7 @@ createApplicationValidator = [
 // LIST
 router.get('/', [jwtMiddleware, requireRole('manager')], async (req, res) => {
     const applications = await Application.find();
-    if (!application) return res.sendStatus(404);
+    if (!applications) return res.sendStatus(404);
 
     res.send(applications);
 });
