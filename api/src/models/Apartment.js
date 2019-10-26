@@ -3,6 +3,8 @@ const mongoose = require("mongoose")
 const { Schema } = mongoose
 const { ObjectId } = Schema.Types
 
+const Building = require('./Building')
+
 const apartmentSchema = Schema({
     apartmentNumber: {
         type: Number,
@@ -12,6 +14,21 @@ const apartmentSchema = Schema({
     building: {
         type: ObjectId,
         ref: "Building"
+    },
+    bedRooms: {
+        type: Number,
+        required: true,
+    },
+    bathRooms: {
+        type: Number,
+        required: true,
+    },
+    squareFoot: {
+        type: Number,
+        required: true,
+    },
+    rent: {
+        type: Number,
     },
     tenant: {
         type: ObjectId,
@@ -34,12 +51,14 @@ apartmentSchema.virtual("tickets", {
     justOne: false,
 })
 
-apartmentSchema.statics.create = async function(num, build, tenant) {
+apartmentSchema.statics.newApartment = async function(data) {
     const apartment = new this()
-    apartment.apartmentNumber = num
-    apartment.building = build
-    apartment.tenant = tenant
-
+    console.log('Logging...', data)
+    const building = await Building.findById(data.building)
+    apartment.set({
+        ...data,
+        building: building._id
+    })
     await apartment.save()
     return apartment
 }

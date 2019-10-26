@@ -12,7 +12,7 @@ const Container = styled.div`
     min-width: 300px;
     background-color: ${props => props.theme.colors.primary};
     display: grid;
-    grid-template-rows: 20% auto;
+    grid-template-rows: 200px auto;
 `;
 const Title = styled.p`
     padding: 3rem;
@@ -38,7 +38,7 @@ const NavLink = styled(Link)`
     background-color: ${props => props.theme.colors.primary};
     border-bottom: 1px solid white;
     font-size: ${props => props.fontSize || '32px'};
-    font-weight: ${props => props.fontWeight || '400'};
+    font-weight: ${props => props.fontWeight || 'Bold'};
     
 
     &:last-child(){
@@ -55,7 +55,6 @@ const Sidebar = () => {
                 <NavLink to="/buildings">Buildings</NavLink>
                 <NavLink to="/apartments">Units</NavLink>
                 <NavLink to="/applications">Applications</NavLink>
-                <NavLink to="/leases">Lease</NavLink>
                 <NavLink to="/tickets">Tickets</NavLink>
             </Navigation>
         </Container>

@@ -11,6 +11,12 @@ const initialState ={
     loggedIn: false,
     username: null,
     role: null,
+    users: null,
+    buldings: null,
+    apartments: null,
+    applications: null,
+    leases: null,
+    tickets: null,
 }
 
 const rehydrateState = () => {

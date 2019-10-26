@@ -11,12 +11,15 @@ const router = AsyncRouter();
 const createApartmentValidator = [
     check('apartmentNumber').exists(),
     check('building').exists(),
+    check('bedRooms').exists(),
+    check('bathRooms').exists(),
+    check('squareFoot').exists(),
 ];
 
 // LIST
 router.get('/', [jwtMiddleware], async (req, res) => {
     const apartments = await Apartment.find().populate({
-        path: 'tickets',
+        path: 'tickets building',
     });
 
     if (!apartments) return res.status(404).send('No apartments found.');
@@ -40,11 +43,7 @@ router.post(
         if (apartmentExists)
             return res.status(400).send('Apartment number already in use.');
 
-        const apartment = Apartment.create(
-            req.body.apartmentNumber,
-            req.body.building,
-            req.body.tenant
-        );
+        const apartment = await Apartment.newApartment(req.body);
 
         res.status(201).send(apartment);
     }

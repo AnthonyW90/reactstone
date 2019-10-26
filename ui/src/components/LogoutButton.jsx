@@ -3,14 +3,15 @@ import styled from 'styled-components'
 
 const Button = styled.button`
     position: absolute;
-    bottom: 10px;
+    font-size: 16px;
+    top: 10px;
     right: 10px;
     border: none;
     border-radius: 12px;
     background-color: red;
     color: white;
-    height: 40px;
-    width: 60px;
+    height: 60px;
+    width: 80px;
     font-weight: bold;
 
     transition: all .5s;
@@ -25,12 +26,24 @@ const LogoutButton = () => {
     const { 1: setRole} = useGlobal("role")
     const { 1: setUsername} = useGlobal("username")
     const { 1: setToken} = useGlobal("token")
+    const { 1: setUsers} = useGlobal("users")
+    const { 1: setBuildings} = useGlobal("buildings")
+    const { 1: setAparments} = useGlobal("apartments")
+    const { 1: setApplications} = useGlobal("applications")
+    const { 1: setLeases} = useGlobal("leases")
+    const { 1: setTickets} = useGlobal("tickets")
 
     const logout = () => {
         setLoggedIn(false)
         setRole(null)
         setUsername(null)
         setToken(null)
+        setUsers(null)
+        setBuildings(null)
+        setAparments(null)
+        setApplications(null)
+        setLeases(null)
+        setTickets(null)
     }
     return (
         <Button onClick={logout}>Logout</Button>

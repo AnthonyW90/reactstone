@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useGlobal } from 'reactn';
+import React, { useEffect, useGlobal } from 'reactn';
+import {Link} from 'react-router-dom'
 import client from '../../api/client';
 import styled from 'styled-components';
 
@@ -16,7 +17,8 @@ const Container = styled.div`
     justify-items: stretch;
 `;
 
-const Card = styled.div`
+const Card = styled(Link)`
+    text-decoration: none;
     background-color: white;
     border-radius: 20px;
     display: grid;
@@ -50,12 +52,12 @@ const CardTitle = styled.p`
 
 const AdminData = () => {
     const { 0: token } = useGlobal('token');
-    const [residents, setResidents] = useState([]);
-    const [buildings, setBuildings] = useState([]);
-    const [apartments, setApartments] = useState([]);
-    const [tickets, setTickets] = useState([]);
-    const [applications, setApplication] = useState([]);
-    const [leases, setLeases] = useState([]);
+    const [residents, setResidents] = useGlobal('users');
+    const [buildings, setBuildings] = useGlobal('buildings');
+    const [apartments, setApartments] = useGlobal('apartments');
+    const [tickets, setTickets] = useGlobal('tickets');
+    const [applications, setApplication] = useGlobal('applications');
+    const [leases, setLeases] = useGlobal('leases');
 
     const getResidents = async () => {
         const { data } = await client.get('/user', {
@@ -63,8 +65,8 @@ const AdminData = () => {
                 Authorization: `Bearer ${token}`,
             },
         });
-        const residents = data.filter(person => person.role === 'resident');
-        setResidents(residents);
+        // const residents = data.filter(person => person.role === 'resident');
+        setResidents(data);
     };
 
     const getBuildings = async () => {
@@ -123,19 +125,19 @@ const AdminData = () => {
 
     return (
         <Container>
-            <Card>
+            <Card to="/users">
                 <CardInfo>
-                    {residents ? residents.length : 'loading...'}
+                    {residents ? `${residents.filter(res => res.role === 'resident').length}` : 'loading...'}
                 </CardInfo>
                 <CardTitle>Residents</CardTitle>
             </Card>
-            <Card>
+            <Card to="/buildings">
                 <CardInfo>
                     {buildings ? buildings.length : 'loading...'}
                 </CardInfo>
                 <CardTitle>Buildings</CardTitle>
             </Card>
-            <Card>
+            <Card to="/apartments">
                 <CardInfo size='72px'>
                     {apartments
                         ? `${apartments.filter(e => e.tenant).length} / ${
@@ -145,7 +147,7 @@ const AdminData = () => {
                 </CardInfo>
                 <CardTitle>Occupied / Total</CardTitle>
             </Card>
-            <Card>
+            <Card to="/tickets">
                 <CardInfo>
                     {tickets
                         ? `${
@@ -159,7 +161,7 @@ const AdminData = () => {
                 </CardInfo>
                 <CardTitle>Open Tickets</CardTitle>
             </Card>
-            <Card>
+            <Card to="/applications">
                 <CardInfo>
                     {applications
                         ? `${
@@ -192,7 +194,7 @@ const AdminData = () => {
                 <CardInfo>idk</CardInfo>
                 <CardTitle>Stuff to fill</CardTitle>
             </Card>
-            <Card>
+            <Card to="/tickets">
                 <CardInfo size='72px'>
                     {tickets
                         ? `${tickets

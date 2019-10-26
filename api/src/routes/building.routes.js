@@ -35,8 +35,8 @@ async (req, res) => {
 })
 
 // DELETE a building
-router.delete("/", async (req, res) => {
-  const building = await Building.findOne( {buildingNumber: req.body.buildingNumber} )
+router.delete("/:_id", async (req, res) => {
+  const building = await Building.findById(req.params._id)
   await building.remove()
 
   res.send(building)
