@@ -121,7 +121,7 @@ const AdminData = () => {
         getTickets();
         getApplications();
         getLeases();
-    }, []);
+    },[]);
 
     return (
         <Container>
@@ -172,7 +172,7 @@ const AdminData = () => {
                 </CardInfo>
                 <CardTitle>Open Applications</CardTitle>
             </Card>
-            <Card>
+            <Card to="#">
                 <CardInfo size='72px'>
                     {leases
                         ? `${leases
@@ -186,11 +186,11 @@ const AdminData = () => {
                 </CardInfo>
                 <CardTitle>Monthly Income</CardTitle>
             </Card>
-            <Card>
+            <Card to="#">
                 <CardInfo>idk</CardInfo>
                 <CardTitle>Stuff to fill</CardTitle>
             </Card>
-            <Card>
+            <Card to="#">
                 <CardInfo>idk</CardInfo>
                 <CardTitle>Stuff to fill</CardTitle>
             </Card>

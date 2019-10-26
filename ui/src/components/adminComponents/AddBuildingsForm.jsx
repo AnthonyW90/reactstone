@@ -71,7 +71,7 @@ const AddBuildingForm = (props) => {
     const handleSubmit = async e => {
         e.preventDefault()
 
-        const { data } = await client.post( '/building', formState, {
+        await client.post( '/building', formState, {
             headers: {Authorization: `Bearer ${token}`}
         })
 
