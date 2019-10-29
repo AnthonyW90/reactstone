@@ -41,7 +41,7 @@ const AdminBuildings = () => {
         <Div>
             <BackButton />
             <Container>
-                {buildings.sort((a,b) => (a.buildingNumber - b.buildingNumber)).map(building => (
+                {buildings ? buildings.sort((a,b) => (a.buildingNumber - b.buildingNumber)).map(building => (
                     <Div key={building._id} isCard>
                         <Title>Building {building.buildingNumber}</Title>
                         {building.apartments.map(apartment => (
@@ -50,7 +50,7 @@ const AdminBuildings = () => {
                             </Content>
                         ))}
                     </Div>
-                ))}
+                )) : 'Loading...'}
             </Container>
             <AddButton onClick={() => setVisible(!visible)}>＋</AddButton>
             <AddBuildingForm visible={visible} onSuccess={handleSuccess}/>

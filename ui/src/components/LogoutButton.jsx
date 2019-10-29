@@ -1,4 +1,5 @@
 import React, {useGlobal} from 'reactn'
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components'
 
 const Button = styled.button`
@@ -22,7 +23,7 @@ const Button = styled.button`
 `
 
 const LogoutButton = () => {
-    const { 1: setLoggedIn} = useGlobal("loggedIn")
+    const [ loggedIn, setLoggedIn ] = useGlobal("loggedIn")
     const { 1: setRole} = useGlobal("role")
     const { 1: setUsername} = useGlobal("username")
     const { 1: setToken} = useGlobal("token")
@@ -46,7 +47,10 @@ const LogoutButton = () => {
         setTickets(null)
     }
     return (
+        <>
+        {loggedIn ? '' : <Redirect to='/'></Redirect>}
         <Button onClick={logout}>Logout</Button>
+        </>
     )
 }
 

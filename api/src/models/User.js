@@ -22,6 +22,7 @@ const userSchema = Schema(
         },
         role: {
             enum: ['admin', 'manager', 'maintenance', 'resident', 'applicant'],
+            default: 'applicant',
             type: String,
         },
     },

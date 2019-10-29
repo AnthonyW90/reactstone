@@ -6,6 +6,7 @@ import LandingHero from '../components/LandingHero';
 import InfoPanel from '../components/LandingInfoPanel';
 import LoginPage from './LoginPage';
 import GalleryPage from './GalleryPage';
+import ApplicationPage from './ApplicationPage';
 import Footer from '../components/Footer';
 
 const LandingPage = () => {
@@ -24,7 +25,7 @@ const LandingPage = () => {
                     <div>FLOOR PLANS</div>
                 </Route>
                 <Route path="/apply">
-                    <div>APPLY NOW</div>
+                    <ApplicationPage />
                 </Route>
                 <Route path="/login">
                     <LoginPage />

@@ -65,11 +65,11 @@ const AdminApartments = () => {
             <Container>
                 <Div isCard>
                     <Title>Available</Title>
-                    {apartments.filter(apartment => !apartment.tenant).map(apartment => (<Apartment key={apartment._id} apartment={apartment}></Apartment>))}
+                    {apartments ? apartments.filter(apartment => !apartment.tenant).map(apartment => (<Apartment key={apartment._id} apartment={apartment}></Apartment>)) : 'Loading...'}
                 </Div>
                 <Div isCard>
                     <Title>Occupied</Title>
-                    {apartments.filter(apartment => apartment.tenant).map(apartment => (<Content key={apartment._id}>Unit {apartment.apartmentNumber}</Content>))}
+                    {apartments ? apartments.filter(apartment => apartment.tenant).map(apartment => (<Content key={apartment._id}>Unit {apartment.apartmentNumber}</Content>)) : 'Loading...'}
                 </Div>
                 <AddButton onClick={() => setVisible(!visible)}>＋</AddButton>
                 <AddApartmentForm visible={visible} onSuccess={handleSuccess}></AddApartmentForm>

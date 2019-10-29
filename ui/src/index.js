@@ -17,6 +17,7 @@ const initialState ={
     applications: null,
     leases: null,
     tickets: null,
+    applicationStatus: null,
 }
 
 const rehydrateState = () => {

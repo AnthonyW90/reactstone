@@ -17,7 +17,7 @@ const createApartmentValidator = [
 ];
 
 // LIST
-router.get('/', [jwtMiddleware], async (req, res) => {
+router.get('/', [jwtMiddleware, requireRole('maintenance', 'manager', 'admin')], async (req, res) => {
     const apartments = await Apartment.find().populate({
         path: 'tickets building',
     });
@@ -25,6 +25,14 @@ router.get('/', [jwtMiddleware], async (req, res) => {
     if (!apartments) return res.status(404).send('No apartments found.');
 
     res.send(apartments);
+});
+
+router.get('/available', [jwtMiddleware], async (req, res) => {
+    const apartments = await Apartment.find();
+
+    if (!apartments) return res.status(404).send('No apartments found.');
+
+    res.send(apartments.filter(apartment => !apartment.tenant));
 });
 
 // CREATE

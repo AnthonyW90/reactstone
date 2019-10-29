@@ -5,6 +5,7 @@ const requireRole = require('../helpers/permissions');
 const handleValidationErrors = require('../helpers/handleValidationErrors');
 
 const Application = require('../models/Application');
+const User = require('../models/User')
 
 const router = AsyncRouter();
 
@@ -31,7 +32,13 @@ router.post(
         handleValidationErrors,
     ],
     async (req, res) => {
-        const application = new Application(req.body);
+        const {apartment, firstName, lastName, phoneNumber, email, income, occupants, previousStreetAddress, previousCity, previousState, previuosZip, bankruptcy, evicted} = req.body
+        const application = new Application();
+        application.set({
+            applicant: req.user._id,
+            status: "open",
+            apartment, firstName, lastName, phoneNumber, email, income, occupants, previousStreetAddress, previousCity, previousState, previuosZip, bankruptcy, evicted  
+        })
         await application.save();
         res.status(201).send(application);
     }

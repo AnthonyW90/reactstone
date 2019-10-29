@@ -12,53 +12,53 @@ const AdminUsers = () => {
             <Container>
                 <Div isCard>
                     <Title>Admin</Title>
-                    {users
+                    {users ? users
                         .filter(user => user.role === 'admin')
                         .map(user => (
                             <Content key={user._id}>
                                 {user.lastName}, {user.firstName}
                             </Content>
-                        ))}
+                        )) : 'Loading...'}
                 </Div>
                 <Div isCard>
                     <Title>Managers</Title>
-                    {users
+                    {users ? users
                         .filter(user => user.role === 'manager')
                         .map(user => (
                             <Content key={user._id}>
                                 {user.lastName}, {user.firstName}
                             </Content>
-                        ))}
+                        )) : 'Loading...'}
                 </Div>
                 <Div isCard>
                     <Title>Maintenance</Title>
-                    {users
+                    {users ? users
                         .filter(user => user.role === 'maintenance')
                         .map(user => (
                             <Content key={user._id}>
                                 {user.lastName}, {user.firstName}
                             </Content>
-                        ))}
+                        )) : 'Loading...'}
                 </Div>
                 <Div isCard>
                     <Title>Applicants</Title>
-                    {users
+                    {users ? users
                         .filter(user => user.role === 'applicant')
                         .map(user => (
                             <Content key={user._id}>
                                 {user.lastName}, {user.firstName}
                             </Content>
-                        ))}
+                        )) : 'Loading...'}
                 </Div>
                 <Div isCard>
                     <Title>Residents</Title>
-                    {users
+                    {users ? users
                         .filter(user => user.role === 'resident')
                         .map(user => (
                             <Content key={user._id}>
                                 {user.lastName}, {user.firstName}
                             </Content>
-                        ))}
+                        )) : 'Loading...'}
                 </Div>
             </Container>
         </Div>

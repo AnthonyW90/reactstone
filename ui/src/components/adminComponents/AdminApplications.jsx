@@ -12,15 +12,15 @@ const AdminApplication = () => {
             <Container>
                 <Div isCard>
                     <Title>Pending</Title>
-                    {applications.filter(app => app.status === 'open').map(app => (<Content>{app.lastName}, {app.firstName}</Content>))}
+                    {applications ? applications.filter(app => app.status === 'open').map(app => (<Content>{app.lastName}, {app.firstName}</Content>)) : 'Loading...'}
                 </Div>
                 <Div isCard>
                     <Title>Approved</Title>
-                    {applications.filter(app => app.status === 'approved').map(app => (<Content>{app.lastName}, {app.firstName}</Content>))}
+                    {applications ? applications.filter(app => app.status === 'approved').map(app => (<Content>{app.lastName}, {app.firstName}</Content>)) : 'Loading...'}
                 </Div>
                 <Div isCard>
                     <Title>Closed</Title>
-                    {applications.filter(app => app.status === 'closed').map(app => (<Content>{app.lastName}, {app.firstName}</Content>))}
+                    {applications ? applications.filter(app => app.status === 'closed').map(app => (<Content>{app.lastName}, {app.firstName}</Content>)) : 'Loading...'}
                 </Div>
             </Container>
         </Div>

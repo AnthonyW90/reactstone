@@ -43,7 +43,7 @@ const Navbar = () => {
         <NavLink to="/gallery">Gallery</NavLink>
         <NavLink to="/amenities">Amenities</NavLink>
         <NavLink to="/floorplans">Floor Plans</NavLink>
-        <NavLink to="/apply">Apply Now</NavLink>
+        <NavLink to="/apply">{loggedIn ? 'Application' : 'Apply Now'}</NavLink>
         {loggedIn ? (
           <NavLink to="#" color="red" onClick={() => setLoggedIn(false)}>
             Logout
