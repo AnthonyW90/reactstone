@@ -51,11 +51,11 @@ const Sidebar = () => {
         <Container>
             <Title>Lakeshore Heights</Title>
             <Navigation>
-                <NavLink to="/users"><i class="fas fa-user"></i> Users</NavLink>
-                <NavLink to="/buildings"><i class="fas fa-building"></i> Buildings</NavLink>
-                <NavLink to="/apartments"><i class="fas fa-home"></i> Units</NavLink>
-                <NavLink to="/applications"><i class="fas fa-file-alt"></i> Applications</NavLink>
-                <NavLink to="/tickets"><i class="fas fa-ticket-alt"></i> Tickets</NavLink>
+                <NavLink to="/users"><i className="fas fa-user"></i> Users</NavLink>
+                <NavLink to="/buildings"><i className="fas fa-building"></i> Buildings</NavLink>
+                <NavLink to="/apartments"><i className="fas fa-home"></i> Units</NavLink>
+                <NavLink to="/applications"><i className="fas fa-file-alt"></i> Applications</NavLink>
+                <NavLink to="/tickets"><i className="fas fa-ticket-alt"></i> Tickets</NavLink>
             </Navigation>
         </Container>
     );

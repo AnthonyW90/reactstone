@@ -119,9 +119,9 @@ const AddApartmentForm = (props) => {
                 </ApartmentSelect>
                 <ApartmentSelect onChange={handleChange} name="building">
                     <ApartmentOption>Building</ApartmentOption>
-                    {buildings.sort((a,b) => (a.buildingNumber - b.buildingNumber)).map(building => (
+                    {buildings ? buildings.sort((a,b) => (a.buildingNumber - b.buildingNumber)).map(building => (
                         <ApartmentOption key={building._id} value={building._id}>Building {building.buildingNumber}</ApartmentOption>
-                    ))}
+                    )) : ''}
                 </ApartmentSelect>
                 {console.log(formState)}
                 <ApartmentSubmitButton>Submit</ApartmentSubmitButton>

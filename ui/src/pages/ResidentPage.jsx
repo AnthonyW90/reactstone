@@ -1,11 +1,12 @@
 import React from 'reactn'
 import LogoutButton from '../components/LogoutButton'
+import ComingSoonPage from '../pages/ComingSoon'
 
 const ResidentPage = () => {
 
     return(
         <>
-        <div>Resident</div>
+        <ComingSoonPage></ComingSoonPage>
         <LogoutButton />
         </>
     )

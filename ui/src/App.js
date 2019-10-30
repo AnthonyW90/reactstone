@@ -7,6 +7,7 @@ import AdminPage from './pages/AdminPage';
 import ManagerPage from './pages/ManagerPage';
 import MaintenancePage from './pages/MaintenancePage';
 import ResidentPage from './pages/ResidentPage';
+import ComingSoonPage from './pages/ComingSoon'
 
 function App() {
   const { 0: role} = useGlobal("role")
@@ -15,7 +16,7 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             {role === 'admin' ? <AdminPage></AdminPage> : 
             role === 'manager' ? <ManagerPage></ManagerPage> : 
             role === 'maintenance' ? <MaintenancePage></MaintenancePage> : 

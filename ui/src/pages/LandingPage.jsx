@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import ComingSoonPage from '../pages/ComingSoon'
 import Navbar from '../components/Navbar';
 import LandingHero from '../components/LandingHero';
 import InfoPanel from '../components/LandingInfoPanel';
@@ -19,10 +20,10 @@ const LandingPage = () => {
                     <GalleryPage />
                 </Route>
                 <Route path="/amenities">
-                    <div>AMENITIES</div>
+                    <ComingSoonPage></ComingSoonPage>
                 </Route>
                 <Route path="/floorplans">
-                    <div>FLOOR PLANS</div>
+                    <ComingSoonPage></ComingSoonPage>
                 </Route>
                 <Route path="/apply">
                     <ApplicationPage />

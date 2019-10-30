@@ -1,5 +1,5 @@
 import React, {useGlobal} from 'reactn'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 const Button = styled.button`
@@ -20,6 +20,11 @@ const Button = styled.button`
     &:hover{
         background-color: tomato;
     }
+`
+
+const RouteHome = styled(Link)`
+    text-decoration: none;
+    color: #fff;
 `
 
 const LogoutButton = () => {
@@ -48,8 +53,7 @@ const LogoutButton = () => {
     }
     return (
         <>
-        {loggedIn ? '' : <Redirect to='/'></Redirect>}
-        <Button onClick={logout}>Logout</Button>
+        <Button onClick={logout}><RouteHome to='/'>Logout</RouteHome></Button>
         </>
     )
 }
