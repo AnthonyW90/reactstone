@@ -6,7 +6,7 @@ import BackButton from '../BackButton';
 import AddBuildingForm from './AddBuildingsForm';
 
 const AddButton = styled.button`
-    position: absolute;
+    position: sticky;
     font-size: 32px;
     color: white;
     bottom: 10px;
@@ -19,6 +19,7 @@ const AddButton = styled.button`
     width: 80px;
     font-weight: bold;
     outline: 0;
+    transform: translate(20px);
 `;
 
 
@@ -52,7 +53,7 @@ const AdminBuildings = () => {
                     </Div>
                 )) : 'Loading...'}
             </Container>
-            <AddButton onClick={() => setVisible(!visible)}>＋</AddButton>
+            <AddButton onClick={() => setVisible(!visible)}><i class="fas fa-plus"></i></AddButton>
             <AddBuildingForm visible={visible} onSuccess={handleSuccess}/>
         </Div>
     );

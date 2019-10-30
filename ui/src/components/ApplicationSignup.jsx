@@ -64,6 +64,8 @@ const ApplicationSignup = () => {
                     <form onSubmit={handleSubmit}>
                         <CardTitle>Create your account</CardTitle>
                         <Content>
+                            <Input required name="firstName" value={formState.firstName} onChange={handleChange} placeholder="First Name"></Input>
+                            <Input required name="lastName" value={formState.lastName} onChange={handleChange} placeholder="Last Name"></Input>
                             <Input required name="username" value={formState.username} onChange={handleChange}placeholder="Username"></Input>
                             <Input required name="password" value={formState.password} onChange={handleChange}type="password" placeholder="Password"></Input>
                             <Input required name="passwordConfirm" value={formState.passwordConfirm} onChange={handleChange}type="password" placeholder="Confirm Password"></Input>

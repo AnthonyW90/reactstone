@@ -19,6 +19,7 @@ const AddButton = styled.button`
     width: 80px;
     font-weight: bold;
     outline: 0;
+    transform: translate(10px);
 `;
 
 const Apartment = ({apartment}) => {
@@ -71,7 +72,7 @@ const AdminApartments = () => {
                     <Title>Occupied</Title>
                     {apartments ? apartments.filter(apartment => apartment.tenant).map(apartment => (<Content key={apartment._id}>Unit {apartment.apartmentNumber}</Content>)) : 'Loading...'}
                 </Div>
-                <AddButton onClick={() => setVisible(!visible)}>＋</AddButton>
+                <AddButton onClick={() => setVisible(!visible)}><i class="fas fa-plus"></i></AddButton>
                 <AddApartmentForm visible={visible} onSuccess={handleSuccess}></AddApartmentForm>
             </Container>
         </Div>

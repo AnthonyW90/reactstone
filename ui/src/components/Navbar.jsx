@@ -1,6 +1,7 @@
 import React, { useGlobal } from "reactn";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import {AnimatedButton} from '../style/Button'
 
 const Nav = styled.div`
   display: flex;
@@ -39,17 +40,16 @@ const Navbar = () => {
     <Nav>
       <Logo>Lakeshore Heights</Logo>
       <NavLinks>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/gallery">Gallery</NavLink>
-        <NavLink to="/amenities">Amenities</NavLink>
-        <NavLink to="/floorplans">Floor Plans</NavLink>
-        <NavLink to="/apply">{loggedIn ? 'Application' : 'Apply Now'}</NavLink>
+        {/* <NavLink to="/">Home</NavLink> */}
+        <AnimatedButton To="/" Text="Home"/>
+        <AnimatedButton To="/gallery"Text="Gallery"/>
+        <AnimatedButton To="/amenities" Text="Amenities"/>
+        <AnimatedButton To="/floorplans"Text="Floorplans"/>
+        <AnimatedButton To="/apply" Text={loggedIn ? 'Application' : 'Apply Now'}/>
         {loggedIn ? (
-          <NavLink to="#" color="red" onClick={() => setLoggedIn(false)}>
-            Logout
-          </NavLink>
+          <AnimatedButton To="#" Text="Logout" Click={() => setLoggedIn(false)} />
         ) : (
-          <NavLink to="/login">Login</NavLink>
+          <AnimatedButton To="/login" Text="Login"/>
         )}
       </NavLinks>
     </Nav>

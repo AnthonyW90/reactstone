@@ -46,7 +46,7 @@ const AdminUsers = () => {
                         .filter(user => user.role === 'applicant')
                         .map(user => (
                             <Content key={user._id}>
-                                {user.lastName}, {user.firstName}
+                                {user.lastName}, {user.firstName}{console.log(user)}
                             </Content>
                         )) : 'Loading...'}
                 </Div>

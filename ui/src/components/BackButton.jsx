@@ -5,12 +5,12 @@ import styled from 'styled-components'
 const Button = styled(Link)`
     position: absolute;
     padding: 1rem;
-    top: 10px;
-    left: 10px;
+    top: -20px;
+    left: 20px;
     border: none;
     border-radius: 50%;
-    height: 60px;
-    width: 60px;
+    height: 45px;
+    width: 45px;
     font-weight: bold;
     font-size: 48px;
     background-color: ${props => props.theme.colors.background};
@@ -19,7 +19,7 @@ const Button = styled(Link)`
 `
 
 const BackButton = () => {
-    return <Button to="/"><span role="img" aria-label="back button">⬅</span></Button>
+    return <Button to="/"><i class="fas fa-chevron-left"></i></Button>
 }
 
 export default BackButton
